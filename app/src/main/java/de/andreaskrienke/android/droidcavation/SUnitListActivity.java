@@ -1,7 +1,8 @@
 package de.andreaskrienke.android.droidcavation;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -37,6 +38,11 @@ public class SUnitListActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if (id == R.id.action_sunit_add) {
+            startActivity(new Intent(this, SUnitDetailActivity.class));
             return true;
         }
 

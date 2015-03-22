@@ -88,7 +88,7 @@ public class DroidCavationContract {
         public static final String COLUMN_SEDIMENT_PERCENTAGE = "sediment_percentage";
 
         // description
-        public static final String COLUMN_SHORT_DESCR = "short_descr";
+        public static final String COLUMN_SHORT_DESC = "short_desc";
 
         /**
          * HARRIS MATRIX
@@ -176,6 +176,14 @@ public class DroidCavationContract {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
+        public static Uri buildSUnitWithNumber(int number) {
+
+            return CONTENT_URI.buildUpon().appendQueryParameter(COLUMN_NUMBER, Integer.toString(number)).build();
+        }
+
+        public static int getSUnitIdFromUri(Uri uri) {
+            return Integer.getInteger(uri.getPathSegments().get(1));
+        }
 
     }
 }

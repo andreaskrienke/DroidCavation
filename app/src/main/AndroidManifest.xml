@@ -32,6 +32,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.andreaskrienke.android.droidcavation.SUnitListActivity" />
         </activity>
+
+        <provider
+            android:authorities="de.andreaskrienke.android.droidcavation"
+            android:name=".data.DroidCavationProvider" />
+
     </application>
 
 </manifest>

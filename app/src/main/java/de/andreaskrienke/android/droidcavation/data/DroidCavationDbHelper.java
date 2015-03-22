@@ -39,7 +39,7 @@ public class DroidCavationDbHelper extends SQLiteOpenHelper {
                 SUnitEntry.COLUMN_SEDIMENT_TYPE + " TEXT NOT NULL " +
                 SUnitEntry.COLUMN_SEDIMENT_SIZE + " TEXT NOT NULL " +
                 SUnitEntry.COLUMN_SEDIMENT_PERCENTAGE + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_SHORT_DESCR + " TEXT NOT NULL " +
+                SUnitEntry.COLUMN_SHORT_DESC + " TEXT NOT NULL " +
                 SUnitEntry.COLUMN_SUNIT_TOP_ID + " INTEGER NOT NULL " +
                 SUnitEntry.COLUMN_SUNIT_BOTTOM_ID + " INTEGER NOT NULL " +
                 SUnitEntry.COLUMN_ASSOCIATED_FEATURE + " INTEGER NOT NULL " +
