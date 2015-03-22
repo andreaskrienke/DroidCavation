@@ -20,6 +20,7 @@ public class SUnitListActivity extends ActionBarActivity {
                     .add(R.id.fragment_sunit_list, new SUnitListActivityFragment())
                     .commit();
         }
+
     }
 
     @Override
@@ -48,4 +49,5 @@ public class SUnitListActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
