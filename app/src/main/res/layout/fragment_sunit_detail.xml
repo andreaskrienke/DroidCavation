@@ -1,0 +1,26 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="de.andreaskrienke.android.droidcavation.SUnitDetailFragment"
+    >
+
+    <LinearLayout
+    android:gravity="center_vertical"
+    android:layout_gravity="left"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    >
+
+    <!-- Detail SUnit -->
+    <TextView
+        android:id="@+id/detail_sunit_textview"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="24sp"
+        android:text="Detail SUnit" />
+    </LinearLayout>
+</ScrollView>
