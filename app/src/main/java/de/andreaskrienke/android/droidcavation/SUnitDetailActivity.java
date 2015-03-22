@@ -8,6 +8,8 @@ import android.view.MenuItem;
 
 public class SUnitDetailActivity extends ActionBarActivity {
 
+    private static final String LOG_TAG = SUnitDetailActivity.class.getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -15,7 +17,7 @@ public class SUnitDetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_sunit_detail);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.sunit_detail_container, new SUnitDetailFragment())
+                    .add(R.id.fragment_sunit_detail, new SUnitDetailActivityFragment())
                     .commit();
         }
     }

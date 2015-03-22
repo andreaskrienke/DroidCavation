@@ -15,4 +15,5 @@
     <string name="title_activity_sunits_list">SUnitsListActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_sunit_detail">SUnitDetailActivity</string>
+    <string name="title_activity_sunit_list">SUnitListActivity</string>
 </resources>
