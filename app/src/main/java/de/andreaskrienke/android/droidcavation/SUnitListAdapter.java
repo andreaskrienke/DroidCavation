@@ -14,6 +14,7 @@ import android.widget.TextView;
 public class SUnitListAdapter extends CursorAdapter {
 
     public SUnitListAdapter(Context context, Cursor c, int flags) {
+
         super(context, c, flags);
     }
 
