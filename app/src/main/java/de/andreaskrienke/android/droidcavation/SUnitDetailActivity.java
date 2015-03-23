@@ -1,6 +1,10 @@
 package de.andreaskrienke.android.droidcavation;
 
+
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,9 +20,17 @@ public class SUnitDetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sunit_detail);
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_sunit_detail, new SUnitDetailActivityFragment())
-                    .commit();
+            Uri uri = getIntent().getData();
+            if (uri != null) {
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.fragment_sunit_detail, new SUnitDetailActivityFragment())
+                        .commit();
+            }
+            else {
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.fragment_sunit_detail, new SUnitDetailEditFragment())
+                        .commit();
+            }
         }
 
     }
@@ -42,6 +54,20 @@ public class SUnitDetailActivity extends ActionBarActivity {
             return true;
         }
 
+        if (id == R.id.action_sunit_edit) {
+
+            //startActivity(new Intent(this, SUnitDetailEditFragment.class));
+            //return true;
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            SUnitDetailEditFragment editFragment = new SUnitDetailEditFragment();
+            fragmentTransaction.replace(R.id.fragment_sunit_detail, editFragment);
+
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+        }
         return super.onOptionsItemSelected(item);
     }
 

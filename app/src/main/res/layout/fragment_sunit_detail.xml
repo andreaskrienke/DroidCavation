@@ -15,15 +15,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/edit_sunit_number"
+    <TextView
+        android:id="@+id/sunit_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="5"/>
+        android:maxLength="5" />
 
-    <Button
-        android:id="@+id/btn_sunit_save"
-        android:text="@string/btn_sunit_save"
+    <TextView
+        android:text="@string/sunit_short_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/sunit_short_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
 </LinearLayout>
