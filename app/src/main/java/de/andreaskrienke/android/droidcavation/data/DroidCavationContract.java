@@ -138,7 +138,8 @@ public class DroidCavationContract {
         /**
          * Sketch/Picture
          */
-        //TODO
+        // sketch
+        public static final String COLUMN_SKETCH = "sketch";
 
         /**
          * Dating/Interpretation
@@ -152,10 +153,10 @@ public class DroidCavationContract {
          */
 
         // excavation date begin
-        public static final String COLUMN_EXCAVATION_DATE_BEGIN = "excavation_date_end";
+        public static final String COLUMN_EXCAVATION_DATE_BEGIN = "excavation_date_begin";
 
         // excavation date end
-        public static final String COLUMN_EXCAVATION_DATA_END = "excavation_date_end";
+        public static final String COLUMN_EXCAVATION_DATE_END = "excavation_date_end";
 
         // excavated by
         public static final String COLUMN_EXCAVATED_BY = "excavated_by";
