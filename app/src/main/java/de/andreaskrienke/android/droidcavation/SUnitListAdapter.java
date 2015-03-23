@@ -35,6 +35,6 @@ public class SUnitListAdapter extends CursorAdapter {
         int number = cursor.getInt(SUnitListActivityFragment.COL_SUNIT_NUMBER);
         // Find TextView and set formatted date on it
         TextView numberView = (TextView) view.findViewById(R.id.list_item_sunit_textview);
-        numberView.setText(number);
+        numberView.setText(""+number);
     }
 }

@@ -27,40 +27,41 @@ public class DroidCavationDbHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_SUNIT_TABLE = "CREATE TABLE " + SUnitEntry.TABLE_NAME + " (" +
                 SUnitEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 SUnitEntry.COLUMN_NUMBER + " INTEGER NOT NULL, " +
-                SUnitEntry.COLUMN_AREA_ID + " INTEGER NOT NULL, " +
-                SUnitEntry.COLUMN_SQUARE_ID + " INTEGER NOT NULL, " +
-                SUnitEntry.COLUMN_TOP_SURFACE_DATE + " INTEGER NOT NULL, " +
-                SUnitEntry.COLUMN_TACHY_MEASUREMENTS + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_TM_TOP_SURFACE_OUTLINE + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_TM_BOTTOM_SURFACE_OUTLINE + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_TM_LEVELMENTS + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_SHAPE + " TEXT NOT NULL " +
-                SUnitEntry.COLUMN_COLOR + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_SEDIMENT_TYPE + " TEXT NOT NULL " +
-                SUnitEntry.COLUMN_SEDIMENT_SIZE + " TEXT NOT NULL " +
-                SUnitEntry.COLUMN_SEDIMENT_PERCENTAGE + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_SHORT_DESC + " TEXT NOT NULL " +
-                SUnitEntry.COLUMN_SUNIT_TOP_ID + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_SUNIT_BOTTOM_ID + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_ASSOCIATED_FEATURE + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_FINDS_CHARCOAL + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_FINDS_POTTERY + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_FINDS_BONE + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_FINDS_FAIENCE + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_FINDS_SHELL + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_FINDS_WOOD + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_FINDS_CLAY_MUD + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_FINDS_OTHERS + " TEXT NOT NULL " +
-                SUnitEntry.COLUMN_DATING_DESCRIPTION + " TEXT NOT NULL " +
-                SUnitEntry.COLUMN_EXCAVATION_DATE_BEGIN + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_EXCAVATION_DATA_END + " INTEGER NOT NULL " +
-                SUnitEntry.COLUMN_EXCAVATED_BY + " TEXT NOT NULL " +
+//                SUnitEntry.COLUMN_AREA_ID + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_SQUARE_ID + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_TOP_SURFACE_DATE + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_TACHY_MEASUREMENTS + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_TM_TOP_SURFACE_OUTLINE + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_TM_BOTTOM_SURFACE_OUTLINE + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_TM_LEVELMENTS + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_SHAPE + " TEXT NOT NULL, " +
+//                SUnitEntry.COLUMN_COLOR + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_SEDIMENT_TYPE + " TEXT NOT NULL, " +
+//                SUnitEntry.COLUMN_SEDIMENT_SIZE + " TEXT NOT NULL, " +
+//                SUnitEntry.COLUMN_SEDIMENT_PERCENTAGE + " INTEGER NOT NULL, " +
+                  SUnitEntry.COLUMN_SHORT_DESC + " TEXT NOT NULL, " +
+//                SUnitEntry.COLUMN_SUNIT_TOP_ID + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_SUNIT_BOTTOM_ID + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_ASSOCIATED_FEATURE + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_FINDS_CHARCOAL + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_FINDS_POTTERY + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_FINDS_BONE + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_FINDS_FAIENCE + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_FINDS_SHELL + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_FINDS_WOOD + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_FINDS_CLAY_MUD + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_FINDS_OTHERS + " TEXT NOT NULL, " +
+//                SUnitEntry.COLUMN_DATING_DESCRIPTION + " TEXT NOT NULL, " +
+//                SUnitEntry.COLUMN_EXCAVATION_DATE_BEGIN + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_EXCAVATION_DATA_END + " INTEGER NOT NULL, " +
+//                SUnitEntry.COLUMN_EXCAVATED_BY + " TEXT NOT NULL, " +
 
                 // To assure the application have just one sunit entry
                 // it's created a UNIQUE constraint with REPLACE strategy
                 " UNIQUE (" + SUnitEntry.COLUMN_NUMBER + ") ON CONFLICT REPLACE);";
 
         sqLiteDatabase.execSQL(SQL_CREATE_SUNIT_TABLE);
+
     }
 
     @Override
