@@ -71,8 +71,8 @@ public class SUnitListActivityFragment extends Fragment implements LoaderManager
                 if (cursor != null) {
 
                     Intent intent = new Intent(getActivity(), SUnitDetailActivity.class)
-                            .setData(DroidCavationContract.SUnitEntry.buildSUnitWithNumber(
-                                    cursor.getInt(COL_SUNIT_NUMBER)
+                            .setData(DroidCavationContract.SUnitEntry.buildSUnitUri(
+                                    cursor.getLong(COL_SUNIT_ID)
                             ));
                     startActivity(intent);
                 }

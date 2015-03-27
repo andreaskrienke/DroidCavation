@@ -3,6 +3,7 @@ package de.andreaskrienke.android.droidcavation;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
@@ -20,7 +21,14 @@ public class SUnitDetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sunit_detail);
         if (savedInstanceState == null) {
+
+            Fragment frag = getSupportFragmentManager().findFragmentById(R.id.fragment_sunit_detail);
+            if (frag != null) {
+                getSupportFragmentManager().beginTransaction().remove(frag).commit();
+            }
+
             Uri uri = getIntent().getData();
+
             if (uri != null) {
                 getSupportFragmentManager().beginTransaction()
                         .add(R.id.fragment_sunit_detail, new SUnitDetailActivityFragment())
@@ -28,6 +36,7 @@ public class SUnitDetailActivity extends ActionBarActivity {
             }
             else {
                 getSupportFragmentManager().beginTransaction()
+//                        .remove(getSupportFragmentManager().findFragmentById(R.id.fragment_sunit_detail))
                         .add(R.id.fragment_sunit_detail, new SUnitDetailEditFragment())
                         .commit();
             }
@@ -62,10 +71,15 @@ public class SUnitDetailActivity extends ActionBarActivity {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
             SUnitDetailEditFragment editFragment = new SUnitDetailEditFragment();
-            fragmentTransaction.replace(R.id.fragment_sunit_detail, editFragment);
 
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+
+            fragmentTransaction
+                    .remove(getSupportFragmentManager().findFragmentById(R.id.fragment_sunit_detail))
+                    .add(R.id.fragment_sunit_detail, editFragment)
+                    .commit();
+
+//            fragmentTransaction.addToBackStack(null);
+//            fragmentTransaction.commit();
 
         }
         return super.onOptionsItemSelected(item);

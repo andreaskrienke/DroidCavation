@@ -2,6 +2,7 @@ package de.andreaskrienke.android.droidcavation;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -79,11 +80,13 @@ public class SUnitDetailActivityFragment extends Fragment implements LoaderManag
             return null;
         }
 
+        Uri sUnitforIdUri = intent.getData();
+
         // Now create and return a CursorLoader that will take care of
         // creating a Cursor for the data being displayed.
         return new CursorLoader(
                 getActivity(),
-                intent.getData(),
+                sUnitforIdUri,
                 SUNIT_COLUMNS,
                 null,
                 null,

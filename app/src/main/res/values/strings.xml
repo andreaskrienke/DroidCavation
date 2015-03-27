@@ -4,6 +4,7 @@
     <!-- Actions -->
     <string name="action_settings">Settings</string>
     <string name="action_sunit_add">Add SU</string>
+    <string name="action_sunit_edit">Edit SU</string>
 
     <!-- Titles -->
     <string name="title_sunit_list">Stratigraphiccal Units</string>
@@ -26,6 +27,7 @@
 
     <!-- SUNIT -->
     <string name="sunit_number">Number</string>
+    <string name="sunit_short_desc">Short description</string>
 
 
 </resources>

@@ -183,7 +183,7 @@ public class DroidCavationContract {
         }
 
         public static int getSUnitIdFromUri(Uri uri) {
-            return Integer.getInteger(uri.getPathSegments().get(1));
+            return Integer.parseInt(uri.getPathSegments().get(1));
         }
 
     }

@@ -8,18 +8,21 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.text.TextUtils;
 
 /**
- * Created by andy on 22.03.15.
+ * DroidCavation ContentProvider class
  */
 public class DroidCavationProvider extends ContentProvider {
+
+    private static final String LOG_TAG = DroidCavationProvider.class.getSimpleName();
 
     // The URI Matcher used by this content provider.
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private DroidCavationDbHelper mOpenHelper;
 
-    static final int SUNIT = 100;
-    static final int SUNIT_ID = 101;
+    static final int SUNIT_LIST = 100;
+    static final int SUNIT_ID   = 101;
 
     private static final SQLiteQueryBuilder sSUnitQueryBuilder;
 
@@ -41,7 +44,7 @@ public class DroidCavationProvider extends ContentProvider {
         final String authority = DroidCavationContract.CONTENT_AUTHORITY;
 
         // For each type of URI you want to add, create a corresponding code.
-        matcher.addURI(authority, DroidCavationContract.PATH_SUNIT, SUNIT);
+        matcher.addURI(authority, DroidCavationContract.PATH_SUNIT, SUNIT_LIST);
         matcher.addURI(authority, DroidCavationContract.PATH_SUNIT + "/#", SUNIT_ID);
 
         return matcher;
@@ -61,7 +64,7 @@ public class DroidCavationProvider extends ContentProvider {
         switch (match) {
             case SUNIT_ID:
                 return DroidCavationContract.SUnitEntry.CONTENT_ITEM_TYPE;
-            case SUNIT:
+            case SUNIT_LIST:
                 return DroidCavationContract.SUnitEntry.CONTENT_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
@@ -73,16 +76,19 @@ public class DroidCavationProvider extends ContentProvider {
         // Here's the switch statement that, given a URI, will determine what kind of request it is,
         // and query the database accordingly.
         Cursor retCursor;
+
         switch (sUriMatcher.match(uri)) {
 
             // "SUNIT/#"
             case SUNIT_ID:
             {
+                // for single row -> get _ID from URI
                 retCursor = getSUnitById(uri, projection, sortOrder);
                 break;
             }
             // "SUNIT"
-            case SUNIT: {
+            case SUNIT_LIST: {
+
                 retCursor = mOpenHelper.getReadableDatabase().query(
                         DroidCavationContract.SUnitEntry.TABLE_NAME,
                         projection,
@@ -98,7 +104,9 @@ public class DroidCavationProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
+
         retCursor.setNotificationUri(getContext().getContentResolver(), uri);
+
         return retCursor;
     }
 
@@ -110,7 +118,8 @@ public class DroidCavationProvider extends ContentProvider {
         Uri returnUri;
 
         switch (match) {
-            case SUNIT: {
+            // "SUNIT"
+            case SUNIT_LIST: {
 
                 long _id = db.insert(DroidCavationContract.SUnitEntry.TABLE_NAME, null, values);
                 if ( _id > 0 )
@@ -122,7 +131,9 @@ public class DroidCavationProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
+
         getContext().getContentResolver().notifyChange(uri, null);
+
         return returnUri;
     }
 
@@ -139,19 +150,37 @@ public class DroidCavationProvider extends ContentProvider {
         int rowsUpdated;
 
         switch (match) {
-            case SUNIT:
+            // "SUNIT/#"
+            case SUNIT_ID: {
+                // update single row -> get _ID from URI
+                int id = DroidCavationContract.SUnitEntry.getSUnitIdFromUri(uri);
+
+                // extend selection string with _ID
+                selection = DroidCavationContract.SUnitEntry._ID + " = " + id +
+                            (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : "");
 
                 rowsUpdated = db.update(DroidCavationContract.SUnitEntry.TABLE_NAME,
                                         values,
                                         selection,
                                         selectionArgs);
                 break;
+            }
+            case SUNIT_LIST: {
+
+                rowsUpdated = db.update(DroidCavationContract.SUnitEntry.TABLE_NAME,
+                                        values,
+                                        selection,
+                                        selectionArgs);
+                break;
+            }
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
+
         if (rowsUpdated != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }
+
         return rowsUpdated;
     }
 
@@ -171,13 +200,18 @@ public class DroidCavationProvider extends ContentProvider {
 
         return sSUnitQueryBuilder.query(mOpenHelper.getReadableDatabase(),
                 projection,
-                sSUnitNumberSelection,
+                sSUnitIdSelection,
                 new String[]{Integer.toString(id)},
                 null,
                 null,
                 sortOrder
         );
     }
+
+    //sunit._ID = ?
+    private static final String sSUnitIdSelection =
+            DroidCavationContract.SUnitEntry.TABLE_NAME+
+                    "." + DroidCavationContract.SUnitEntry._ID + " = ? ";
 
     //sunit.number = ?
     private static final String sSUnitNumberSelection =

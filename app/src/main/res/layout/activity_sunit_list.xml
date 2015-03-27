@@ -3,6 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_sunit_list"
     android:name="de.andreaskrienke.android.droidcavation.SUnitListActivityFragment"
-    tools:layout="@layout/fragment_sunit_list"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+
+    tools:layout="@android:layout/list_content"
+    />
+<!--
+     tools:layout="@layout/fragment_sunit_list"
+-->
