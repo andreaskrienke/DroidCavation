@@ -1,27 +1,110 @@
 <LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:paddingLeft="@dimen/activity_horizontal_margin"
-android:paddingRight="@dimen/activity_horizontal_margin"
-android:paddingTop="@dimen/activity_vertical_margin"
-android:paddingBottom="@dimen/activity_vertical_margin"
-android:orientation="vertical"
-tools:context="de.andreaskrienke.android.droidcavation.SUnitDetailEditFragment">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="de.andreaskrienke.android.droidcavation.SUnitDetailEditFragment"
+    android:weightSum="1">
 
+    <!-- SUNIT ID -->
+    <TextView
+        android:text="@string/sunit_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/sunit_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- SUNIT NUMBER -->
     <TextView
         android:text="@string/sunit_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/edit_sunit_number"
+        android:id="@+id/sunit_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLength="5"
         android:inputType="number"
         />
+
+    <!-- SUNIT LOCALIZATION -->
+
+    <!-- SUNIT STRUCTURE -->
+    <TextView
+        android:text="@string/sunit_top_surface_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/sunit_top_surface_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="@string/sunit_bottom_surface_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/sunit_bottom_surface_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- SUNIT DESCRIPTION -->
+
+    <TextView
+        android:text="@string/sunit_shape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/spin_sunit_shape"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/shapes"
+        />
+
+    <TextView
+        android:text="@string/sunit_sediment_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/spin_sunit_sediment_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/sediment_types"
+        />
+
+    <TextView
+        android:text="@string/sunit_sediment_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/spin_sunit_sediment_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/sediment_sizes"
+        />
+
+    <TextView
+        android:text="@string/sunit_sediment_percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <SeekBar
+        android:id="@+id/sunit_sediment_percentage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"/>
 
     <TextView
         android:text="@string/sunit_short_desc"
@@ -29,7 +112,29 @@ tools:context="de.andreaskrienke.android.droidcavation.SUnitDetailEditFragment">
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/edit_sunit_short_desc"
+        android:id="@+id/sunit_short_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine" />
+
+    <TextView
+        android:text="@string/sunit_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/spin_sunit_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:text="@string/sunit_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/spin_sunit_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
@@ -39,5 +144,11 @@ tools:context="de.andreaskrienke.android.droidcavation.SUnitDetailEditFragment">
         android:text="@string/btn_sunit_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_sunit_cancel"
+        android:text="@string/btn_sunit_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
 </LinearLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="shapes">
+        <item></item>
+        <item>oval</item>
+        <item>circle</item>
+    </string-array>
+
+    <string-array name="sediment_types">
+        <item></item>
+        <item>sand</item>
+        <item>stone</item>
+    </string-array>
+
+    <string-array name="sediment_sizes">
+        <item></item>
+        <item>fine sand</item>
+        <item>little stones</item>
+    </string-array>
+
+</resources>

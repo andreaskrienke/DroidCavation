@@ -102,6 +102,12 @@ public class SUnitDetailActivityFragment extends Fragment implements LoaderManag
             return;
         }
 
+        // sunit id
+        int id = data.getInt(COL_SUNIT_ID);
+
+        TextView detailSUnitIdTextView = (TextView)getView().findViewById(R.id.sunit_id);
+        detailSUnitIdTextView.setText(String.valueOf(id));
+
         // sunit number
         int number = data.getInt(COL_SUNIT_NUMBER);
 

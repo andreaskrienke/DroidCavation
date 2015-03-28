@@ -60,7 +60,8 @@ public class DroidCavationDbHelper extends SQLiteOpenHelper {
 
                 // To assure the application have just one sunit entry
                 // it's created a UNIQUE constraint with REPLACE strategy
-                " UNIQUE (" + SUnitEntry.COLUMN_NUMBER + ") ON CONFLICT REPLACE);";
+                //" UNIQUE (" + SUnitEntry.COLUMN_NUMBER + ") ON CONFLICT REPLACE);";
+                " UNIQUE (" + SUnitEntry.COLUMN_NUMBER + ") );";
 
         sqLiteDatabase.execSQL(SQL_CREATE_SUNIT_TABLE);
 

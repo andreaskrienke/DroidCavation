@@ -11,6 +11,16 @@
     tools:context="de.andreaskrienke.android.droidcavation.SUnitDetailActivityFragment">
 
     <TextView
+        android:text="@string/sunit_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/sunit_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
         android:text="@string/sunit_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

@@ -31,6 +31,12 @@ public class SUnitListAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
 
+        // Read id from cursor
+        int id = cursor.getInt(SUnitListActivityFragment.COL_SUNIT_ID);
+        // Find TextView and set value
+        TextView sUnitIdTextView = (TextView)view.findViewById(R.id.list_item_sunit_id);
+        sUnitIdTextView.setText(String.valueOf(id));
+
         // Read number from cursor
         int number = cursor.getInt(SUnitListActivityFragment.COL_SUNIT_NUMBER);
         // Find TextView and set value

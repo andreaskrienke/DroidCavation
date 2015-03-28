@@ -28,6 +28,46 @@ public class DroidCavationContract {
     /* Inner class that defines the table contents of the sunit table */
     public static final class SUnitEntry implements BaseColumns {
 
+        // Specify the columns we need.
+        public static final String[] SUNIT_COLUMNS = {
+                // In this case the id needs to be fully qualified with a table name,
+                // On the one hand, that's annoying.  On the other, you can search the weather table
+                // using the location set by the user, which is only in the Location table.
+                // So the convenience is worth it.
+                DroidCavationContract.SUnitEntry.TABLE_NAME + "." + DroidCavationContract.SUnitEntry._ID,
+                DroidCavationContract.SUnitEntry.COLUMN_NUMBER,
+                DroidCavationContract.SUnitEntry.COLUMN_AREA_ID,
+                DroidCavationContract.SUnitEntry.COLUMN_SQUARE_ID,
+                DroidCavationContract.SUnitEntry.COLUMN_TOP_SURFACE_DATE,
+                DroidCavationContract.SUnitEntry.COLUMN_BOTTOM_SURFACE_DATE,
+                DroidCavationContract.SUnitEntry.COLUMN_TACHY_MEASUREMENTS,
+                DroidCavationContract.SUnitEntry.COLUMN_TM_TOP_SURFACE_OUTLINE,
+                DroidCavationContract.SUnitEntry.COLUMN_TM_BOTTOM_SURFACE_OUTLINE,
+                DroidCavationContract.SUnitEntry.COLUMN_TM_LEVELMENTS,
+                DroidCavationContract.SUnitEntry.COLUMN_SHAPE,
+                DroidCavationContract.SUnitEntry.COLUMN_COLOR,
+                DroidCavationContract.SUnitEntry.COLUMN_SEDIMENT_TYPE,
+                DroidCavationContract.SUnitEntry.COLUMN_SEDIMENT_SIZE,
+                DroidCavationContract.SUnitEntry.COLUMN_SEDIMENT_PERCENTAGE,
+                DroidCavationContract.SUnitEntry.COLUMN_SHORT_DESC,
+                DroidCavationContract.SUnitEntry.COLUMN_SUNIT_TOP_ID,
+                DroidCavationContract.SUnitEntry.COLUMN_SUNIT_BOTTOM_ID,
+                DroidCavationContract.SUnitEntry.COLUMN_ASSOCIATED_FEATURE,
+                DroidCavationContract.SUnitEntry.COLUMN_FINDS_CHARCOAL,
+                DroidCavationContract.SUnitEntry.COLUMN_FINDS_POTTERY,
+                DroidCavationContract.SUnitEntry.COLUMN_FINDS_BONE,
+                DroidCavationContract.SUnitEntry.COLUMN_FINDS_FAIENCE,
+                DroidCavationContract.SUnitEntry.COLUMN_FINDS_SHELL,
+                DroidCavationContract.SUnitEntry.COLUMN_FINDS_WOOD,
+                DroidCavationContract.SUnitEntry.COLUMN_FINDS_CLAY_MUD,
+                DroidCavationContract.SUnitEntry.COLUMN_FINDS_OTHERS,
+                DroidCavationContract.SUnitEntry.COLUMN_DATING_DESCRIPTION,
+                DroidCavationContract.SUnitEntry.COLUMN_SKETCH,
+                DroidCavationContract.SUnitEntry.COLUMN_EXCAVATION_DATE_BEGIN,
+                DroidCavationContract.SUnitEntry.COLUMN_EXCAVATION_DATE_END,
+                DroidCavationContract.SUnitEntry.COLUMN_EXCAVATED_BY
+        };
+
         public static final String TABLE_NAME = "sunit";
 
         // Column with the sunit number

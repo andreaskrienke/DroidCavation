@@ -11,7 +11,7 @@
     <string name="title_sunit_detail">Stratigraphiccal Unit</string>
     <string name="title_activity_sunits_list">Stratigraphiccal Units</string>
 
-    <string name="title_activity_sunit_detail">Stratigraphiccal Unit</string>
+    <string name="title_activity_sunit_detail">Stratigraphical Unit</string>
     <string name="title_activity_sunit_list">Stratigraphiccal Units</string>
 
     <!-- Start Buttons -->
@@ -23,11 +23,24 @@
     <string name="btn_start_media">Media</string>
 
     <string name="btn_sunit_save">Save SU</string>
+    <string name="btn_sunit_cancel">Cancel</string>
 
 
     <!-- SUNIT -->
+    <string name="sunit_id">ID</string>
+    <string name="sunit_top_surface_date">Top Surface Date</string>
+    <string name="sunit_bottom_surface_date">Bottom Surface Date</string>
     <string name="sunit_number">Number</string>
     <string name="sunit_short_desc">Short description</string>
+    <string name="sunit_shape">Shape</string>
+    <string name="sunit_sediment_type">Sediment type</string>
+    <string name="sunit_sediment_size">Sediment size</string>
+    <string name="sunit_sediment_percentage">Sediment Percentage</string>
+    <string name="sunit_top">SU above</string>
+    <string name="sunit_bottom">SU bottom</string>
+
+    <string name="sunit_insert_message">SU inserted.</string>
+    <string name="sunit_update_message">SU updated.</string>
 
 
 </resources>
