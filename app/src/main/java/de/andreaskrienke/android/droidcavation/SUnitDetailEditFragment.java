@@ -28,6 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.andreaskrienke.android.droidcavation.data.DroidCavationContract;
+import de.andreaskrienke.android.droidcavation.util.DateChooser;
+import de.andreaskrienke.android.droidcavation.util.SpinnerObject;
+import de.andreaskrienke.android.droidcavation.util.Utility;
 
 /**
  * SUnitDetailEditFragment class.

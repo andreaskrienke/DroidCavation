@@ -1,4 +1,4 @@
-package de.andreaskrienke.android.droidcavation;
+package de.andreaskrienke.android.droidcavation.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -7,6 +7,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.List;
+
+import de.andreaskrienke.android.droidcavation.util.SpinnerObject;
 
 /**
  * Custom Array Adapter to hide an item.

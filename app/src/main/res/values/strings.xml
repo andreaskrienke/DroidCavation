@@ -25,19 +25,49 @@
     <string name="btn_sunit_save">Save SU</string>
     <string name="btn_sunit_cancel">Cancel</string>
 
+    <!-- SUNIT labels -->
+    <string name="sunit_localization">Localization</string>
+    <string name="sunit_structure">Structure</string>
+    <string name="sunit_description">Description</string>
+    <string name="sunit_matrix">Matrix</string>
+    <string name="sunit_finds">Finds</string>
+    <string name="sunit_dating_interpretation">Dating/Interpretation</string>
+    <string name="sunit_sketch_picture">Sketch/Picture</string>
+    <string name="sunit_excavation">Excavation</string>
 
     <!-- SUNIT -->
     <string name="sunit_id">ID</string>
+    <string name="sunit_number">Number</string>
+    <string name="sunit_area_id">Area</string>
+    <string name="sunit_square_id">Square</string>
     <string name="sunit_top_surface_date">Top Surface Date</string>
     <string name="sunit_bottom_surface_date">Bottom Surface Date</string>
-    <string name="sunit_number">Number</string>
-    <string name="sunit_short_desc">Short description</string>
+    <string name="sunit_tachy_measurements">Tachy Measurements</string>
+    <string name="sunit_tachy_measurements_on">Yes</string>
+    <string name="sunit_tachy_measurements_off">No</string>
+    <string name="sunit_top_surface_outline">Top Surface Outline</string>
+    <string name="sunit_bottom_surface_outline">Bottom Surface Outline</string>
+    <string name="sunit_levelments">Levelments</string>
     <string name="sunit_shape">Shape</string>
-    <string name="sunit_sediment_type">Sediment type</string>
-    <string name="sunit_sediment_size">Sediment size</string>
+    <string name="sunit_sediment_type">Sediment Type</string>
+    <string name="sunit_sediment_size">Sediment Size</string>
     <string name="sunit_sediment_percentage">Sediment Percentage</string>
-    <string name="sunit_top">SU above</string>
-    <string name="sunit_bottom">SU bottom</string>
+    <string name="sunit_short_desc">Short description</string>
+    <string name="sunit_top">SU Top</string>
+    <string name="sunit_bottom">SU Bottom</string>
+    <string name="sunit_associated_feature">Associated Feature</string>
+    <string name="sunit_finds_charcoal">Charcoal</string>
+    <string name="sunit_finds_pottery">Pottery</string>
+    <string name="sunit_finds_bone">Bone</string>
+    <string name="sunit_finds_faience">Faience</string>
+    <string name="sunit_finds_shell">Shell</string>
+    <string name="sunit_finds_wood">Wood</string>
+    <string name="sunit_finds_clay_mud">Clay/Mud</string>
+    <string name="sunit_finds_other">Other</string>
+    <string name="sunit_dating_desc">Description</string>
+    <string name="sunit_excavation_start">Excavation Start</string>
+    <string name="sunit_excavation_end">Excavation End</string>
+    <string name="sunit_excavated_by">Excavated By</string>
 
     <string name="sunit_insert_message">SU inserted.</string>
     <string name="sunit_update_message">SU updated.</string>

@@ -37,7 +37,7 @@ public class SUnitListActivityFragment extends Fragment implements LoaderManager
             DroidCavationContract.SUnitEntry.COLUMN_SHORT_DESC
     };
 
-    // These indices are tied to FORECAST_COLUMNS.  If FORECAST_COLUMNS changes, these
+    // These indices are tied to SUNIT_COLUMNS.  If SUNIT_COLUMNS changes, these
     // must change.
     static final int COL_SUNIT_ID = 0;
     static final int COL_SUNIT_NUMBER = 1;

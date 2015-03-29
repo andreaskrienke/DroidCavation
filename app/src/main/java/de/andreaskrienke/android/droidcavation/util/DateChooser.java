@@ -1,4 +1,4 @@
-package de.andreaskrienke.android.droidcavation;
+package de.andreaskrienke.android.droidcavation.util;
 
 import android.app.DatePickerDialog;
 import android.content.Context;

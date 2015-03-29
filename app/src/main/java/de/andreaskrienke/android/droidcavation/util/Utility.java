@@ -1,4 +1,4 @@
-package de.andreaskrienke.android.droidcavation;
+package de.andreaskrienke.android.droidcavation.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
