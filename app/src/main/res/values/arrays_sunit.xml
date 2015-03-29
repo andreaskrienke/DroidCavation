@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="areas">
+        <item></item>
+        <item>SAV1N</item>
+        <item>SAV1E</item>
+        <item>SAV1S</item>
+        <item>SAV1W</item>
+    </string-array>
+
+    <string-array name="squares">
+        <item></item>
+        <item>1a</item>
+        <item>2a</item>
+    </string-array>
+
     <string-array name="shapes">
         <item></item>
         <item>oval</item>
-        <item>circle</item>
+        <item>circular</item>
+        <item>unregular</item>
+        <item>aquare</item>
     </string-array>
 
     <string-array name="sediment_types">
         <item></item>
         <item>sand</item>
-        <item>stone</item>
+        <item>loam</item>
+        <item>clay</item>
+        <item>pebble</item>
     </string-array>
 
     <string-array name="sediment_sizes">
         <item></item>
         <item>fine sand</item>
-        <item>little stones</item>
+        <item>finest</item>
+        <item>middle</item>
+        <item>coarse</item>
     </string-array>
 
 </resources>

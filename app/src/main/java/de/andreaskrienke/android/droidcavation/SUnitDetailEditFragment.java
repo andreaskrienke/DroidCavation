@@ -17,11 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -68,12 +70,12 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
     static final int COLUMN_FINDS_FAIENCE = 22;
     static final int COLUMN_FINDS_SHELL = 23;
     static final int COLUMN_FINDS_WOOD = 24;
-    static final int COLUMN_FINDS_CLAY_MUD = 26;
-    static final int COLUMN_FINDS_OTHERS = 27;
-    static final int COLUMN_DATING_DESCRIPTION = 28;
-    static final int COLUMN_SKETCH = 29;
-    static final int COLUMN_EXCAVATION_DATE_BEGIN = 30;
-    static final int COLUMN_EXCAVATION_DATE_END = 31;
+    static final int COLUMN_FINDS_CLAY_MUD = 25;
+    static final int COLUMN_FINDS_OTHERS = 26;
+    static final int COLUMN_DATING_DESCRIPTION = 27;
+    static final int COLUMN_SKETCH = 28;
+    static final int COLUMN_EXCAVATION_DATE_BEGIN = 29;
+    static final int COLUMN_EXCAVATION_DATE_END = 30;
     static final int COLUMN_EXCAVATED_BY = 31;
 
     public SUnitDetailEditFragment() {
@@ -93,6 +95,23 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
 //            ((TextView) rootView.findViewById(R.id.edit_sunit_number))
 //                    .setText(sUnitStr);
 //        }
+
+        /**
+         * Localization
+         */
+        // area
+        Spinner spArea = (Spinner) rootView.findViewById(R.id.spin_sunit_area_id);
+        ArrayAdapter<String> areaAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.areas));
+        areaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spArea.setAdapter(areaAdapter);
+
+        // square
+        Spinner spSquare = (Spinner) rootView.findViewById(R.id.spin_square_id);
+        ArrayAdapter<String> squareAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.squares));
+        squareAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spSquare.setAdapter(squareAdapter);
 
         /**
          * Structure from motion model
@@ -142,6 +161,14 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
         //customArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         sUnitBottom.setAdapter(dataAdapter);
+
+        // excavation date begin
+        Button btnExcavationDateBegin= (Button) rootView.findViewById(R.id.sunit_excavation_begin);
+        DateChooser excavationDateBegin = new DateChooser(btnExcavationDateBegin, getActivity());
+
+        // excavation date end
+        Button btnExcavationDateEnd= (Button) rootView.findViewById(R.id.sunit_excavation_end);
+        DateChooser excavationDateEnd = new DateChooser(btnExcavationDateEnd, getActivity());
 
         initListeners(rootView);
 
@@ -284,15 +311,26 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
 
         // sunit id
         int id = data.getInt(COLUMN_SUNIT_ID);
-
         TextView txtId = (TextView)getView().findViewById(R.id.sunit_id);
         txtId.setText(String.valueOf(id));
 
         // sunit number
         int number = data.getInt(COLUMN_SUNIT_NUMBER);
-
         EditText txtNumber = (EditText)getView().findViewById(R.id.sunit_number);
         txtNumber.setText(String.valueOf(number));
+
+        // sunit area id
+        String area = data.getString(COLUMN_AREA_ID);
+        Spinner spArea = (Spinner)getView().findViewById(R.id.spin_sunit_area_id);
+        int areaPos = ((ArrayAdapter<String>) spArea.getAdapter()).getPosition(area);
+        spArea.setSelection(areaPos);
+
+        // sunit square id
+        String square = data.getString(COLUMN_SQUARE_ID);
+        Spinner spSquare = (Spinner)getView().findViewById(R.id.spin_square_id);
+        int squarePos = ((ArrayAdapter<String>) spSquare.getAdapter()).getPosition(square);
+        spSquare.setSelection(squarePos);
+
 
         // sunit top surface date
         long topSurfaceDate = data.getLong(COLUMN_TOP_SURFACE_DATE);
@@ -307,42 +345,56 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
             btnBottomSurfaceDate.setText(Utility.sdformat.format(Utility.loadDate(bottomSurfaceDate)));
         }
 
+        // tachy measurements
+        int tachyMeasurements = data.getInt(COLUMN_TACHY_MEASUREMENTS);
+        ToggleButton tgTachyMeasurements = (ToggleButton) getView().findViewById(R.id.sunit_tachy_measurements);
+        tgTachyMeasurements.setChecked(tachyMeasurements > 0 ? true : false);
+
+        // top surface outline
+        int topSurfaceOutline = data.getInt(COLUMN_TM_TOP_SURFACE_OUTLINE);
+        CheckBox cbTopSurfaceOutline = (CheckBox) getView().findViewById(R.id.sunit_top_surface_outline);
+        cbTopSurfaceOutline.setChecked(topSurfaceOutline > 0 ? true : false);
+
+        // bottom surface outline
+        int bottomSurfaceOutline = data.getInt(COLUMN_TM_BOTTOM_SURFACE_OUTLINE);
+        CheckBox tgBottomSurfaceOutline = (CheckBox) getView().findViewById(R.id.sunit_bottom_surface_outline);
+        tgBottomSurfaceOutline.setChecked(bottomSurfaceOutline > 0 ? true : false);
+
+        // levelments
+        int levelments = data.getInt(COLUMN_TM_LEVELMENTS);
+        CheckBox cbLevelements = (CheckBox) getView().findViewById(R.id.sunit_levelments);
+        cbLevelements.setChecked(levelments > 0 ? true : false);
+
         // sunit shape
         String shape = data.getString(COLUMN_SHAPE);
-
         Spinner spShape = (Spinner)getView().findViewById(R.id.spin_sunit_shape);
         int shapePos = ((ArrayAdapter<String>) spShape.getAdapter()).getPosition(shape);
         spShape.setSelection(shapePos);
 
         // sunit sediment type
         String sedimentType = data.getString(COLUMN_SEDIMENT_TYPE);
-
         Spinner spSedimentType = (Spinner)getView().findViewById(R.id.spin_sunit_sediment_type);
         int sedimentTypePos = ((ArrayAdapter<String>) spSedimentType.getAdapter()).getPosition(sedimentType);
         spSedimentType.setSelection(sedimentTypePos);
 
         // sunit sediment size
         String sedimentSize = data.getString(COLUMN_SEDIMENT_SIZE);
-
         Spinner spSedimentSize = (Spinner)getView().findViewById(R.id.spin_sunit_sediment_size);
         int sedimentSizePos = ((ArrayAdapter<String>) spSedimentSize.getAdapter()).getPosition(sedimentSize);
         spSedimentSize.setSelection(sedimentSizePos);
 
         // sunit sediment percentage
         int sedimentPercentage = data.getInt(COLUMN_SEDIMENT_PERCENTAGE);
-
         SeekBar sbSedimentPercentage = (SeekBar)getView().findViewById(R.id.sunit_sediment_percentage);
         sbSedimentPercentage.setProgress(sedimentPercentage);
 
         // sunit short description
         String shortDesc = data.getString(COLUMN_SHORT_DESC);
-
         EditText txtShortDesc = (EditText)getView().findViewById(R.id.sunit_short_desc);
         txtShortDesc.setText(shortDesc);
 
         // sunit top id
         int sUnitTopId = data.getInt(COLUMN_SUNIT_TOP_ID);
-
         Spinner spSUnitTop = (Spinner)getView().findViewById(R.id.spin_sunit_top);
         ArrayAdapter<SpinnerObject> sUnitTopAdapter = (ArrayAdapter<SpinnerObject>) spSUnitTop.getAdapter();
         int sUnitTopPos = sUnitTopAdapter.getPosition(new SpinnerObject(sUnitTopId, String.valueOf(number)));
@@ -350,11 +402,78 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
 
         // sunit bottom id
         int sUnitBottomId = data.getInt(COLUMN_SUNIT_BOTTOM_ID);
-
         Spinner spSUnitBottom = (Spinner)getView().findViewById(R.id.spin_sunit_bottom);
         ArrayAdapter<SpinnerObject> sUnitBottomAdapter = (ArrayAdapter<SpinnerObject>) spSUnitBottom.getAdapter();
         int sUnitBottomPos = sUnitBottomAdapter.getPosition(new SpinnerObject(sUnitBottomId, String.valueOf(number)));
         spSUnitBottom.setSelection(sUnitBottomPos);
+
+        // finds charcoal
+        int findsCharcoal = data.getInt(COLUMN_FINDS_CHARCOAL);
+        CheckBox cbFindsCharcoal = (CheckBox) getView().findViewById(R.id.sunit_finds_charcoal);
+        cbFindsCharcoal.setChecked(findsCharcoal > 0 ? true : false);
+
+        // finds pottery
+        int findsPottery = data.getInt(COLUMN_FINDS_POTTERY);
+        CheckBox cbFindsPottery = (CheckBox) getView().findViewById(R.id.sunit_finds_pottery);
+        cbFindsPottery.setChecked(findsPottery > 0 ? true : false);
+
+        // finds bone
+        int findsBone = data.getInt(COLUMN_FINDS_BONE);
+        CheckBox cbFindsBone = (CheckBox) getView().findViewById(R.id.sunit_finds_bone);
+        cbFindsBone.setChecked(findsBone > 0 ? true : false);
+
+        // finds faience
+        int findsFaience = data.getInt(COLUMN_FINDS_FAIENCE);
+        CheckBox cbFindsFaience = (CheckBox) getView().findViewById(R.id.sunit_finds_faience);
+        cbFindsFaience.setChecked(findsFaience > 0 ? true : false);
+
+        // finds shell
+        int findsShell = data.getInt(COLUMN_FINDS_SHELL);
+        CheckBox cbFindsShell = (CheckBox) getView().findViewById(R.id.sunit_finds_shell);
+        cbFindsShell.setChecked(findsShell > 0 ? true : false);
+
+        // finds wood
+        int findsWood = data.getInt(COLUMN_FINDS_WOOD);
+        CheckBox cbFindsWood = (CheckBox) getView().findViewById(R.id.sunit_finds_wood);
+        cbFindsWood.setChecked(findsWood > 0 ? true : false);
+
+        // finds clay/mud
+        int findsClayMud = data.getInt(COLUMN_FINDS_CLAY_MUD);
+        CheckBox cbFindsClayMud = (CheckBox) getView().findViewById(R.id.sunit_finds_clay_mud);
+        cbFindsClayMud.setChecked(findsClayMud > 0 ? true : false);
+
+        // finds other
+        String findsOther = data.getString(COLUMN_FINDS_OTHERS);
+        EditText txtFindsOther = (EditText)getView().findViewById(R.id.sunit_finds_other);
+        txtFindsOther.setText(findsOther);
+
+        // dating description
+        String datingDesc = data.getString(COLUMN_DATING_DESCRIPTION);
+        EditText txtDatingDesc = (EditText)getView().findViewById(R.id.sunit_dating_desc);
+        txtDatingDesc.setText(datingDesc);
+
+        // excavation date begin
+        long excavationDateBegin = data.getLong(COLUMN_EXCAVATION_DATE_BEGIN);
+        if (excavationDateBegin > 0) {
+            Button btnExcavationDateBegin = (Button) getView().findViewById(R.id.sunit_excavation_begin);
+            btnExcavationDateBegin.setText(Utility.sdformat.format(Utility.loadDate(excavationDateBegin)));
+        }
+        // excavation date end
+        long excavationDateEnd = data.getLong(COLUMN_EXCAVATION_DATE_END);
+        if (excavationDateEnd > 0) {
+            Button btnExcavationDateEnd = (Button) getView().findViewById(R.id.sunit_excavation_end);
+            btnExcavationDateEnd.setText(Utility.sdformat.format(Utility.loadDate(excavationDateEnd)));
+        }
+
+        // excavated by
+        String excavatedBy = data.getString(COLUMN_EXCAVATED_BY);
+        EditText txtExcavatedBy = (EditText)getView().findViewById(R.id.sunit_excavated_by);
+        txtExcavatedBy.setText(excavatedBy);
+
+
+
+
+
 
         // If onCreateOptionsMenu has already happened, we need to update the share intent now.
 //        if (mShareActionProvider != null) {
@@ -381,6 +500,12 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
         EditText txtNumber = (EditText)getView().findViewById(R.id.sunit_number);
         String sUnitNumber = txtNumber.getText().toString();
 
+        Spinner spArea = (Spinner)getView().findViewById(R.id.spin_sunit_area_id);
+        String area = spArea.getSelectedItem().toString();
+
+        Spinner spSquare = (Spinner)getView().findViewById(R.id.spin_square_id);
+        String square = spSquare.getSelectedItem().toString();
+
         Button btnTopSurfaceDate = (Button)getView().findViewById(R.id.sunit_top_surface_date);
         long topSurfaceDate = 0;
         try {
@@ -400,6 +525,19 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
         catch (ParseException pe) {
             pe.printStackTrace();
         }
+
+        ToggleButton tgTachyMeasurements = (ToggleButton)getView().findViewById(R.id.sunit_tachy_measurements);
+        int tachyMeasurements = tgTachyMeasurements.isChecked() ? 1 : 0;
+
+        CheckBox cbTopSurfaceOutline = (CheckBox)getView().findViewById(R.id.sunit_top_surface_outline);
+        int topSurfaceOutline = cbTopSurfaceOutline.isChecked() ? 1 : 0;
+
+        CheckBox cbBottomSurfaceOutline = (CheckBox)getView().findViewById(R.id.sunit_bottom_surface_outline);
+        int bottomSurfaceOutline = cbBottomSurfaceOutline.isChecked() ? 1 : 0;
+
+        CheckBox cbLevelments = (CheckBox)getView().findViewById(R.id.sunit_levelments);
+        int levelments = cbLevelments.isChecked() ? 1 : 0;
+
 
         Spinner spShape = (Spinner)getView().findViewById(R.id.spin_sunit_shape);
         String shape = spShape.getSelectedItem().toString();
@@ -423,12 +561,70 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
         Spinner spSUnitBottomId = (Spinner)getView().findViewById(R.id.spin_sunit_bottom);
         int sUnitBottomId = ((SpinnerObject) spSUnitBottomId.getSelectedItem()).getId();
 
+        CheckBox cbFindsCharcoal = (CheckBox)getView().findViewById(R.id.sunit_finds_charcoal);
+        int findsCharcoal = cbFindsCharcoal.isChecked() ? 1 : 0;
+
+        CheckBox cbFindsPottery = (CheckBox)getView().findViewById(R.id.sunit_finds_pottery);
+        int findsPottery = cbFindsPottery.isChecked() ? 1 : 0;
+
+        CheckBox cbFindsBone = (CheckBox)getView().findViewById(R.id.sunit_finds_bone);
+        int findsBone = cbFindsBone.isChecked() ? 1 : 0;
+
+        CheckBox cbFindsFaience = (CheckBox)getView().findViewById(R.id.sunit_finds_faience);
+        int findsFaience = cbFindsFaience.isChecked() ? 1 : 0;
+
+        CheckBox cbFindsShell = (CheckBox)getView().findViewById(R.id.sunit_finds_shell);
+        int findsShell = cbFindsShell.isChecked() ? 1 : 0;
+
+        CheckBox cbFindsWood = (CheckBox)getView().findViewById(R.id.sunit_finds_wood);
+        int findsWood = cbFindsWood.isChecked() ? 1 : 0;
+
+        CheckBox cbFindsClayMud = (CheckBox)getView().findViewById(R.id.sunit_finds_clay_mud);
+        int findsClayMud = cbFindsClayMud.isChecked() ? 1 : 0;
+
+        EditText txtFindsOther = (EditText)getView().findViewById(R.id.sunit_finds_other);
+        String findsOther = txtFindsOther.getText().toString();
+
+        EditText txtDatingDesc = (EditText)getView().findViewById(R.id.sunit_dating_desc);
+        String datingDesc = txtDatingDesc.getText().toString();
+
+        Button btnExcavationBegin= (Button)getView().findViewById(R.id.sunit_excavation_begin);
+        long excavationBegin = 0;
+        try {
+            excavationBegin = Utility.persistDate(
+                    Utility.sdformat.parse(btnExcavationBegin.getText().toString()));
+        }
+        catch (ParseException pe) {
+            pe.printStackTrace();
+        }
+
+        Button btnExcavationEnd = (Button)getView().findViewById(R.id.sunit_excavation_end);
+        long excavationEnd = 0;
+        try {
+            excavationEnd = Utility.persistDate(
+                    Utility.sdformat.parse(btnExcavationEnd.getText().toString()));
+        }
+        catch (ParseException pe) {
+            pe.printStackTrace();
+        }
+
+        EditText txtExcavatedBy = (EditText)getView().findViewById(R.id.sunit_excavated_by);
+        String excavatedBy = txtExcavatedBy.getText().toString();
+
+
+
 
         // Then add the data, along with the corresponding name of the data type,
         // so the content provider knows what kind of value is being inserted.
         contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_NUMBER, sUnitNumber);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_AREA_ID, area);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_SQUARE_ID, square);
         contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_TOP_SURFACE_DATE, topSurfaceDate);
         contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_BOTTOM_SURFACE_DATE, bottomSurfaceDate);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_TACHY_MEASUREMENTS, tachyMeasurements);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_TM_TOP_SURFACE_OUTLINE, topSurfaceOutline);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_TM_BOTTOM_SURFACE_OUTLINE, bottomSurfaceOutline);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_TM_LEVELMENTS, levelments);
         contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_SHAPE, shape);
         contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_SEDIMENT_TYPE, sedimentType);
         contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_SEDIMENT_SIZE, sedimentSize);
@@ -436,6 +632,18 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
         contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_SHORT_DESC, sUnitShortDesc);
         contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_SUNIT_TOP_ID, sUnitTopId);
         contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_SUNIT_BOTTOM_ID, sUnitBottomId);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_FINDS_CHARCOAL, findsCharcoal);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_FINDS_POTTERY, findsPottery);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_FINDS_BONE, findsBone);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_FINDS_FAIENCE, findsFaience);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_FINDS_SHELL, findsShell);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_FINDS_WOOD, findsWood);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_FINDS_CLAY_MUD, findsClayMud);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_FINDS_OTHERS, findsOther);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_DATING_DESCRIPTION, datingDesc);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_EXCAVATION_DATE_BEGIN, excavationBegin);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_EXCAVATION_DATE_END, excavationEnd);
+        contentValues.put(DroidCavationContract.SUnitEntry.COLUMN_EXCAVATED_BY, excavatedBy);
 
         return contentValues;
     }

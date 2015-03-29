@@ -34,7 +34,7 @@
 
         <EditText
             android:id="@+id/sunit_number"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLength="5"
             android:inputType="number"
@@ -341,11 +341,11 @@
             style="?android:attr/listSeparatorTextViewStyle"
             />
         <TextView
-            android:text="@string/sunit_excavation_start"
+            android:text="@string/sunit_excavation_begin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <Button
-            android:id="@+id/sunit_excavation_start"
+            android:id="@+id/sunit_excavation_begin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

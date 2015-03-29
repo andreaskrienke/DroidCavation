@@ -1,6 +1,5 @@
 package de.andreaskrienke.android.droidcavation;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,13 +17,17 @@ import de.andreaskrienke.android.droidcavation.data.DroidCavationContract;
 
 
 /**
- * A placeholder fragment containing a simple view.
+ * a placeholder fragment containing a simple view.
  */
 public class SUnitDetailActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String LOG_TAG = SUnitDetailActivityFragment.class.getSimpleName();
 
     private static final int SUNIT_DETAIL_LOADER = 0;
+
+    static final String DETAIL_URI = "URI";
+
+    private Uri mUri;
 
     // For the sunit view we're showing only a small subset of the stored data.
     // Specify the columns we need.
@@ -51,7 +54,11 @@ public class SUnitDetailActivityFragment extends Fragment implements LoaderManag
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //return inflater.inflate(R.layout.fragment_sunit_detail, container, false);
+
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            mUri = arguments.getParcelable(SUnitDetailActivityFragment.DETAIL_URI);
+        }
 
         View rootView = inflater.inflate(R.layout.fragment_sunit_detail, container, false);
 
@@ -74,6 +81,7 @@ public class SUnitDetailActivityFragment extends Fragment implements LoaderManag
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        /*
         Log.v(LOG_TAG, "In onCreateLoader");
         Intent intent = getActivity().getIntent();
         if (intent == null) {
@@ -92,6 +100,21 @@ public class SUnitDetailActivityFragment extends Fragment implements LoaderManag
                 null,
                 null
         );
+        */
+        Log.v(LOG_TAG, "In onCreateLoader");
+        if ( null != mUri ) {
+            // Now create and return a CursorLoader that will take care of
+            // creating a Cursor for the data being displayed.
+            return new CursorLoader(
+                    getActivity(),
+                    mUri,
+                    SUNIT_COLUMNS,
+                    null,
+                    null,
+                    null);
+        }
+        return null;
+
     }
 
     @Override

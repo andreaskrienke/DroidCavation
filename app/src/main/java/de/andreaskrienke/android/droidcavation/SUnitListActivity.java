@@ -1,26 +1,51 @@
 package de.andreaskrienke.android.droidcavation;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
-public class SUnitListActivity extends ActionBarActivity {
+/**
+ * SUNIT List Activity
+ */
+public class SUnitListActivity extends ActionBarActivity implements SUnitListActivityFragment.Callback {
 
     private static final String LOG_TAG = SUnitListActivity.class.getSimpleName();
+    private static final String DETAILFRAGMENT_TAG = "DFTAG";
+    private boolean mTwoPane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sunit_list);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_sunit_list, new SUnitListActivityFragment())
-                    .commit();
+
+        if (findViewById(R.id.fragment_sunit_detail) != null) {
+            // The detail container view will be present only in the large-screen layouts
+            // (res/layout-sw600dp). If this view is present, then the activity should be
+            // in two-pane mode.
+            mTwoPane = true;
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+
+            if (savedInstanceState == null) {
+                //getSupportFragmentManager().beginTransaction()
+                //        .add(R.id.fragment_sunit_list, new SUnitListActivityFragment())
+                //        .commit();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_sunit_detail, new SUnitDetailActivityFragment(), DETAILFRAGMENT_TAG)
+                        .commit();
+            }
+        }
+        else {
+            mTwoPane = false;
+            getSupportActionBar().setElevation(0f);
         }
 
+        SUnitListActivityFragment sUnitListActivityFragment =  ((SUnitListActivityFragment)getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_sunit_list));
     }
 
     @Override
@@ -48,6 +73,28 @@ public class SUnitListActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemSelected(Uri contentUri) {
+        if (mTwoPane) {
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            Bundle args = new Bundle();
+            args.putParcelable(SUnitDetailActivityFragment.DETAIL_URI, contentUri);
+
+            SUnitDetailActivityFragment fragment = new SUnitDetailActivityFragment();
+            fragment.setArguments(args);
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_sunit_detail, fragment, DETAILFRAGMENT_TAG)
+                    .commit();
+        }
+        else {
+            Intent intent = new Intent(this, SUnitDetailActivity.class).setData(contentUri);
+            startActivity(intent);
+        }
     }
 
 }

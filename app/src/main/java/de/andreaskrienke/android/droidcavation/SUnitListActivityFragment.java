@@ -1,6 +1,5 @@
 package de.andreaskrienke.android.droidcavation;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,7 +17,7 @@ import de.andreaskrienke.android.droidcavation.data.DroidCavationContract;
 
 
 /**
- * A placeholder fragment containing a simple view.
+ * a placeholder fragment containing a simple view.
  */
 public class SUnitListActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -34,7 +33,11 @@ public class SUnitListActivityFragment extends Fragment implements LoaderManager
             // So the convenience is worth it.
             DroidCavationContract.SUnitEntry.TABLE_NAME + "." + DroidCavationContract.SUnitEntry._ID,
             DroidCavationContract.SUnitEntry.COLUMN_NUMBER,
-            DroidCavationContract.SUnitEntry.COLUMN_SHORT_DESC
+            DroidCavationContract.SUnitEntry.COLUMN_SHORT_DESC,
+            DroidCavationContract.SUnitEntry.COLUMN_AREA_ID,
+            DroidCavationContract.SUnitEntry.COLUMN_SQUARE_ID,
+            DroidCavationContract.SUnitEntry.COLUMN_EXCAVATION_DATE_BEGIN,
+            DroidCavationContract.SUnitEntry.COLUMN_EXCAVATION_DATE_END
     };
 
     // These indices are tied to SUNIT_COLUMNS.  If SUNIT_COLUMNS changes, these
@@ -42,8 +45,24 @@ public class SUnitListActivityFragment extends Fragment implements LoaderManager
     static final int COL_SUNIT_ID = 0;
     static final int COL_SUNIT_NUMBER = 1;
     static final int COL_SUNIT_SHORT_DESC = 2;
+    static final int COL_SUNIT_AREA_ID = 3;
+    static final int COL_SUNIT_SQUARE_ID = 4;
+    static final int COL_SUNIT_EXCAVATION_DATE_BEGIN = 5;
+    static final int COL_SUNIT_EXCAVATION_DATE_END = 6;
 
     private SUnitListAdapter mSUnitListAdapter;
+
+    /**
+     * A callback interface that all activities containing this fragment must
+     * implement. This mechanism allows activities to be notified of item
+     * selections.
+     */
+    public interface Callback {
+        /**
+         * DetailFragmentCallback for when an item has been selected.
+         */
+        public void onItemSelected(Uri dateUri);
+    }
 
     public SUnitListActivityFragment() {
     }
@@ -68,6 +87,7 @@ public class SUnitListActivityFragment extends Fragment implements LoaderManager
 
                 // if it cannot seek to that position.
                 Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
+                /*
                 if (cursor != null) {
 
                     Intent intent = new Intent(getActivity(), SUnitDetailActivity.class)
@@ -75,6 +95,14 @@ public class SUnitListActivityFragment extends Fragment implements LoaderManager
                                     cursor.getLong(COL_SUNIT_ID)
                             ));
                     startActivity(intent);
+                }
+                */
+                if (cursor != null) {
+
+                    ((Callback) getActivity())
+                            .onItemSelected(DroidCavationContract.SUnitEntry.buildSUnitUri(
+                                    cursor.getLong(COL_SUNIT_ID)
+                            ));
                 }
             }
         });

@@ -10,6 +10,7 @@
     tools:context="de.andreaskrienke.android.droidcavation.SUnitListActivityFragment">
 
     <ListView
+        style="@style/DroidCavationListStyle"
         android:id="@+id/listview_sunit"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

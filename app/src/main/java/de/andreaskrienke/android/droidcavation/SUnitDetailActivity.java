@@ -20,7 +20,14 @@ public class SUnitDetailActivity extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sunit_detail);
+
         if (savedInstanceState == null) {
+
+            // Create the detail fragment and add it to the activity
+            // using a fragment transaction.
+
+            Bundle arguments = new Bundle();
+            arguments.putParcelable(SUnitDetailActivityFragment.DETAIL_URI, getIntent().getData());
 
             Fragment frag = getSupportFragmentManager().findFragmentById(R.id.fragment_sunit_detail);
             if (frag != null) {
@@ -30,14 +37,17 @@ public class SUnitDetailActivity extends ActionBarActivity {
             Uri uri = getIntent().getData();
 
             if (uri != null) {
+                SUnitDetailActivityFragment sUnitDetailActivityFragment = new SUnitDetailActivityFragment();
+                sUnitDetailActivityFragment.setArguments(arguments);
                 getSupportFragmentManager().beginTransaction()
-                        .add(R.id.fragment_sunit_detail, new SUnitDetailActivityFragment())
+                        .add(R.id.fragment_sunit_detail, sUnitDetailActivityFragment)
                         .commit();
             }
             else {
+                SUnitDetailEditFragment sUnitDetailActivityEditFragment = new SUnitDetailEditFragment();
+                sUnitDetailActivityEditFragment.setArguments(arguments);
                 getSupportFragmentManager().beginTransaction()
-//                        .remove(getSupportFragmentManager().findFragmentById(R.id.fragment_sunit_detail))
-                        .add(R.id.fragment_sunit_detail, new SUnitDetailEditFragment())
+                        .add(R.id.fragment_sunit_detail, sUnitDetailActivityEditFragment)
                         .commit();
             }
         }

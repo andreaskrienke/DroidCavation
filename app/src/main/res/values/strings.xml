@@ -7,12 +7,12 @@
     <string name="action_sunit_edit">Edit SU</string>
 
     <!-- Titles -->
-    <string name="title_sunit_list">Stratigraphiccal Units</string>
-    <string name="title_sunit_detail">Stratigraphiccal Unit</string>
-    <string name="title_activity_sunits_list">Stratigraphiccal Units</string>
+    <string name="title_sunit_list">Stratigraphical Units</string>
+    <string name="title_sunit_detail">Stratigraphical Unit</string>
+    <string name="title_activity_sunits_list">Stratigraphical Units</string>
 
     <string name="title_activity_sunit_detail">Stratigraphical Unit</string>
-    <string name="title_activity_sunit_list">Stratigraphiccal Units</string>
+    <string name="title_activity_sunit_list">Stratigraphical Units</string>
 
     <!-- Start Buttons -->
     <string name="btn_start_sites">Sites</string>
@@ -34,6 +34,12 @@
     <string name="sunit_dating_interpretation">Dating/Interpretation</string>
     <string name="sunit_sketch_picture">Sketch/Picture</string>
     <string name="sunit_excavation">Excavation</string>
+
+    <!-- SUNIT List -->
+    <string name="sunit_list_number">#</string>
+    <string name="sunit_list_short_desc">Description:</string>
+    <string name="sunit_list_area">Area:</string>
+    <string name="sunit_list_square">Square:</string>
 
     <!-- SUNIT -->
     <string name="sunit_id">ID</string>
@@ -65,7 +71,7 @@
     <string name="sunit_finds_clay_mud">Clay/Mud</string>
     <string name="sunit_finds_other">Other</string>
     <string name="sunit_dating_desc">Description</string>
-    <string name="sunit_excavation_start">Excavation Start</string>
+    <string name="sunit_excavation_begin">Excavation Begin</string>
     <string name="sunit_excavation_end">Excavation End</string>
     <string name="sunit_excavated_by">Excavated By</string>
 
