@@ -21,8 +21,7 @@
             android:minWidth="120dp"
             android:textSize="24sp"
             android:text="@string/btn_start_sites"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/btn_start_sunits"
@@ -31,8 +30,7 @@
             android:minWidth="120dp"
             android:textSize="24sp"
             android:text="@string/btn_start_sunits"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/btn_start_features"
@@ -41,8 +39,7 @@
             android:minWidth="120dp"
             android:textSize="24sp"
             android:text="@string/btn_start_features"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
     </LinearLayout>
 
     <LinearLayout
