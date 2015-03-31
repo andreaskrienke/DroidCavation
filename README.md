@@ -1,5 +1,11 @@
 # DroidCavation
 
+## Android Excacvation App
+
+![Droidcavation - Main Screen](screenshots/droidcavation_mainscreen.png)
+
+![Droidcavation - Stratigraphical Unit](screenshots/droidcavation_su.png)
+
 This is my final project created for the Android Study Jam Vienna.
 
 The app is an on-field supporting app for archeologists helping them to document their excavation activties directly in the
