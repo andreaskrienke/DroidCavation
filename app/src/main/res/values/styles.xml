@@ -13,19 +13,8 @@
         -->
     </style>
 
-    <!-- Base application theme.
+    <!-- application theme. -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light">
-        <item name="colorPrimary">@color/bgcolor</item>
-        <item name="colorPrimaryDark">@color/dialog_brown</item>
-        <item name="actionBarStyle">@style/BrownActionBar</item>
-        <item name="android:textColor">@color/bar_gray</item>
-    </style>
-    -->
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light">
-        <!--
-        <item name="android:windowBackground">@color/bgcolor</item>
-        <item name="android:colorBackground">@color/bgcolor</item>
-        -->
         <item name="colorPrimary">@color/bgcolor</item>
         <item name="colorPrimaryDark">@color/dialog_brown</item>
         <item name="actionBarStyle">@style/BrownActionBar</item>
@@ -40,8 +29,11 @@
     <!-- main activity action bar styles -->
     <style name="ActionBar.Solid.DroidCavation.SU" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
         <item name="android:background">@color/bar_brown</item>
+
         <item name="displayOptions">useLogo|showTitle|showHome</item>
+
         <item name="logo">@drawable/su</item>
+
     </style>
 
     <!-- Style for forecast listview -->
@@ -51,15 +43,34 @@
     </style>
 
 
-    <style name="BrownActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <style name="BrownActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
         <item name="android:background">@color/bar_brown</item>
+        <!--
         <item name="displayOptions">useLogo|showTitle|showHome</item>
         <item name="logo">@drawable/ic_launcher</item>
+        -->
     </style>
 
 
     <!-- Settings activity theme. -->
     <style name="SettingsTheme" parent="AppTheme">
+    </style>
+
+    <!-- the theme applied to the application or activity -->
+    <style name="CustomActionBarTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="MyActionBar"
+        parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/dialog_brown</item>
+
+        <!-- Support library compatibility -->
+        <item name="background">@color/dialog_brown</item>
+        <item name="displayOptions">useLogo|showTitle|showHome</item>
+        <item name="logo">@drawable/ic_launcher</item>
     </style>
 
 </resources>

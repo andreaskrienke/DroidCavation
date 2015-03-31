@@ -2,7 +2,6 @@ package de.andreaskrienke.android.droidcavation;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.net.Uri;
@@ -78,6 +77,8 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
     static final int COLUMN_EXCAVATION_DATE_END = 30;
     static final int COLUMN_EXCAVATED_BY = 31;
 
+    private Uri mUri;
+
     public SUnitDetailEditFragment() {
     }
 
@@ -85,6 +86,11 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //return inflater.inflate(R.layout.fragment_sunit_detail, container, false);
+
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            mUri = arguments.getParcelable(SUnitDetailActivityFragment.DETAIL_URI);
+        }
 
         View rootView = inflater.inflate(R.layout.fragment_sunit_detail_edit, container, false);
 
@@ -202,15 +208,10 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
                 // get values from view
                 ContentValues sUnitValues = getContentValuesFromView();
 
-                //EditText numberEditText = (EditText) getActivity().findViewById(R.id.edit_sunit_number);
-                //TextView idEditText = (TextView) getActivity().findViewById(R.id.sunit_id);
-
-                Uri sUnitUri = getActivity().getIntent().getData();
-
-                if (sUnitUri != null) {
+                if (mUri != null) {
 
                     // we have an Uri from intent data -> get ID
-                    sUnitId = DroidCavationContract.SUnitEntry.getSUnitIdFromUri(sUnitUri);
+                    sUnitId = DroidCavationContract.SUnitEntry.getSUnitIdFromUri(mUri);
 
                     // try to read DB with given ID
                     Cursor sUnitCursor = getActivity().getContentResolver().query(
@@ -278,27 +279,19 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Log.v(LOG_TAG, "In onCreateLoader");
-        Intent intent = getActivity().getIntent();
-        if (intent == null) {
-            return null;
-        }
 
-        Uri sUnitforIdUri = intent.getData();
-        if (sUnitforIdUri == null) {
-            //sUnitforIdUri = DroidCavationContract.SUnitEntry.CONTENT_URI;
-            return null;
+        if ( null != mUri ) {
+            // Now create and return a CursorLoader that will take care of
+            // creating a Cursor for the data being displayed.
+            return new CursorLoader(
+                    getActivity(),
+                    mUri,
+                    DroidCavationContract.SUnitEntry.SUNIT_COLUMNS,
+                    null,
+                    null,
+                    null);
         }
-
-        // Now create and return a CursorLoader that will take care of
-        // creating a Cursor for the data being displayed.
-        return new CursorLoader(
-                getActivity(),
-                sUnitforIdUri,
-                DroidCavationContract.SUnitEntry.SUNIT_COLUMNS,
-                null,
-                null,
-                null
-        );
+        return null;
     }
 
     @Override
@@ -650,7 +643,7 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
 
     private List<SpinnerObject> getSUList() {
 
-        List<SpinnerObject> sUnitList = new ArrayList < SpinnerObject > ();
+        List<SpinnerObject> sUnitList = new ArrayList< SpinnerObject >();
 
         Cursor sUnitCursor = getActivity().getContentResolver().query(
                 DroidCavationContract.SUnitEntry.CONTENT_URI,
@@ -659,13 +652,13 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
                 null,
                 null);
 
-        Uri sUnitUri = getActivity().getIntent().getData();
+        //Uri sUnitUri = getActivity().getIntent().getData();
 
         int sUnitId = 0;
-        if (sUnitUri != null) {
+        if (mUri != null) {
 
             // we have an Uri from intent data -> get ID
-            sUnitId = DroidCavationContract.SUnitEntry.getSUnitIdFromUri(sUnitUri);
+            sUnitId = DroidCavationContract.SUnitEntry.getSUnitIdFromUri(mUri);
         }
 
         // add Default entry to list
@@ -675,16 +668,16 @@ public class SUnitDetailEditFragment extends Fragment implements View.OnClickLis
         if (sUnitCursor.moveToFirst()) {
             do {
                 if (sUnitId == sUnitCursor.getInt(sUnitCursor.getColumnIndex(
-                                                  DroidCavationContract.SUnitEntry._ID))) {
+                        DroidCavationContract.SUnitEntry._ID))) {
                     // don't add current SUNIT to list of related SUNITs
                     continue;
                 }
                 // adding SUNIT to list via Spinner Object containing ID and NUMBER
                 sUnitList.add(new SpinnerObject(
-                                    sUnitCursor.getInt(sUnitCursor.getColumnIndex(
-                                            DroidCavationContract.SUnitEntry._ID)),
-                                    sUnitCursor.getString(sUnitCursor.getColumnIndex(
-                                            DroidCavationContract.SUnitEntry.COLUMN_NUMBER))
+                        sUnitCursor.getInt(sUnitCursor.getColumnIndex(
+                                DroidCavationContract.SUnitEntry._ID)),
+                        sUnitCursor.getString(sUnitCursor.getColumnIndex(
+                                DroidCavationContract.SUnitEntry.COLUMN_NUMBER))
                 ));
 
 

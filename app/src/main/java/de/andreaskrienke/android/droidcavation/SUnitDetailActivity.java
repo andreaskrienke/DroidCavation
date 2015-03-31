@@ -21,6 +21,8 @@ public class SUnitDetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sunit_detail);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         if (savedInstanceState == null) {
 
             // Create the detail fragment and add it to the activity
@@ -30,6 +32,7 @@ public class SUnitDetailActivity extends ActionBarActivity {
             arguments.putParcelable(SUnitDetailActivityFragment.DETAIL_URI, getIntent().getData());
 
             Fragment frag = getSupportFragmentManager().findFragmentById(R.id.fragment_sunit_detail);
+
             if (frag != null) {
                 getSupportFragmentManager().beginTransaction().remove(frag).commit();
             }

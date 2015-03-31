@@ -52,6 +52,10 @@ public class SUnitListActivityFragment extends Fragment implements LoaderManager
 
     private SUnitListAdapter mSUnitListAdapter;
 
+    private int mPosition = ListView.INVALID_POSITION;
+
+    private static final String SELECTED_KEY = "selected_position";
+
     /**
      * A callback interface that all activities containing this fragment must
      * implement. This mechanism allows activities to be notified of item
@@ -87,16 +91,7 @@ public class SUnitListActivityFragment extends Fragment implements LoaderManager
 
                 // if it cannot seek to that position.
                 Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
-                /*
-                if (cursor != null) {
 
-                    Intent intent = new Intent(getActivity(), SUnitDetailActivity.class)
-                            .setData(DroidCavationContract.SUnitEntry.buildSUnitUri(
-                                    cursor.getLong(COL_SUNIT_ID)
-                            ));
-                    startActivity(intent);
-                }
-                */
                 if (cursor != null) {
 
                     ((Callback) getActivity())
@@ -104,8 +99,20 @@ public class SUnitListActivityFragment extends Fragment implements LoaderManager
                                     cursor.getLong(COL_SUNIT_ID)
                             ));
                 }
+                mPosition = position;
             }
         });
+
+        // If there's instance state, mine it for useful information.
+        // The end-goal here is that the user never knows that turning their device sideways
+        // does crazy lifecycle related things.  It should feel like some stuff stretched out,
+        // or magically appeared to take advantage of room, but data or place in the app was never
+        // actually *lost*.
+        if (savedInstanceState != null && savedInstanceState.containsKey(SELECTED_KEY)) {
+            // The listview probably hasn't even been populated yet.  Actually perform the
+            // swapout in onLoadFinished.
+            mPosition = savedInstanceState.getInt(SELECTED_KEY);
+        }
 
         return rootView;
 
@@ -121,6 +128,14 @@ public class SUnitListActivityFragment extends Fragment implements LoaderManager
     public void onStart() {
         super.onStart();
         updateSUnitList();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+        if (mPosition != ListView.INVALID_POSITION) {
+            outState.putInt(SELECTED_KEY, mPosition);
+        }
     }
 
     private void updateSUnitList() {
@@ -151,4 +166,5 @@ public class SUnitListActivityFragment extends Fragment implements LoaderManager
     public void onLoaderReset(Loader<Cursor> loader) {
         mSUnitListAdapter.swapCursor(null);
     }
+
 }

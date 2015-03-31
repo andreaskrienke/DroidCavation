@@ -79,7 +79,7 @@
                 android:text="@string/sunit_area_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <Spinner
+            <TextView
                 android:id="@+id/spin_sunit_area_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -96,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <Spinner
+            <TextView
                 android:id="@+id/spin_square_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -121,11 +121,13 @@
             <TextView
                 android:text="@string/sunit_top_surface_date"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
             <TextView
                 android:id="@+id/sunit_top_surface_date"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -137,11 +139,13 @@
             <TextView
                 android:text="@string/sunit_bottom_surface_date"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
             <TextView
                 android:id="@+id/sunit_bottom_surface_date"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -170,7 +174,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOn="@string/sunit_tachy_measurements_on"
-                android:textOff="@string/sunit_tachy_measurements_off" />
+                android:textOff="@string/sunit_tachy_measurements_off"
+                android:clickable="false" />
 
         </LinearLayout>
 
@@ -178,17 +183,20 @@
             android:id="@+id/sunit_top_surface_outline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sunit_top_surface_outline" />
+            android:text="@string/sunit_top_surface_outline"
+            android:clickable="false" />
         <CheckBox
             android:id="@+id/sunit_bottom_surface_outline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sunit_bottom_surface_outline" />
+            android:text="@string/sunit_bottom_surface_outline"
+            android:clickable="false" />
         <CheckBox
             android:id="@+id/sunit_levelments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sunit_levelments" />
+            android:text="@string/sunit_levelments"
+            android:clickable="false" />
 
         <!-- SUNIT DESCRIPTION -->
         <TextView
@@ -211,7 +219,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/sunit_shape"
+                android:id="@+id/spin_sunit_shape"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -223,15 +231,12 @@
             android:orientation="horizontal">
         </LinearLayout>
 
-
-
-
         <TextView
             android:text="@string/sunit_sediment_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <Spinner
+        <TextView
             android:id="@+id/spin_sunit_sediment_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -248,25 +253,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/sediment_sizes"
+            android:clickable="false"
             />
 
         <TextView
             android:text="@string/sunit_sediment_percentage"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            />
 
         <SeekBar
             android:id="@+id/sunit_sediment_percentage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="100"/>
+            android:max="100"
+            android:clickable="false"
+            android:focusable="false"
+            />
 
         <TextView
             android:text="@string/sunit_short_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <EditText
+        <TextView
             android:id="@+id/sunit_short_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -290,6 +302,7 @@
             android:id="@+id/spin_sunit_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="false"
             />
 
         <TextView
@@ -301,6 +314,7 @@
             android:id="@+id/spin_sunit_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="false"
             />
 
         <TextView
@@ -312,6 +326,7 @@
             android:id="@+id/spin_sunit_associated_feature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="false"
             />
 
         <!-- FINDS -->
@@ -327,44 +342,51 @@
             android:id="@+id/sunit_finds_charcoal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sunit_finds_charcoal" />
+            android:text="@string/sunit_finds_charcoal"
+            android:clickable="false" />
         <CheckBox
             android:id="@+id/sunit_finds_pottery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sunit_finds_pottery" />
+            android:text="@string/sunit_finds_pottery"
+            android:clickable="false" />
         <CheckBox
             android:id="@+id/sunit_finds_bone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sunit_finds_bone" />
+            android:text="@string/sunit_finds_bone"
+            android:clickable="false" />
         <CheckBox
             android:id="@+id/sunit_finds_faience"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sunit_finds_faience" />
+            android:text="@string/sunit_finds_faience"
+            android:clickable="false" />
         <CheckBox
             android:id="@+id/sunit_finds_shell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sunit_finds_shell" />
+            android:text="@string/sunit_finds_shell"
+            android:clickable="false" />
         <CheckBox
             android:id="@+id/sunit_finds_wood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sunit_finds_wood" />
+            android:text="@string/sunit_finds_wood"
+            android:clickable="false" />
         <CheckBox
             android:id="@+id/sunit_finds_clay_mud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sunit_finds_clay_mud" />
+            android:text="@string/sunit_finds_clay_mud"
+            android:clickable="false" />
 
         <TextView
             android:text="@string/sunit_finds_other"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <EditText
+        <TextView
             android:id="@+id/sunit_finds_other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -384,7 +406,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <EditText
+        <TextView
             android:id="@+id/sunit_dating_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -416,7 +438,8 @@
         <Button
             android:id="@+id/sunit_excavation_begin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:clickable="false" />
 
         <TextView
             android:text="@string/sunit_excavation_end"
@@ -425,7 +448,8 @@
         <Button
             android:id="@+id/sunit_excavation_end"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:clickable="false" />
 
         <!-- EXCAVATED BY -->
         <TextView
@@ -433,24 +457,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <EditText
+        <TextView
             android:id="@+id/sunit_excavated_by"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine" />
-
-        <!-- BUTTONS -->
-        <Button
-            android:id="@+id/btn_sunit_save"
-            android:text="@string/btn_sunit_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/btn_sunit_cancel"
-            android:text="@string/btn_sunit_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
 
     </LinearLayout>
 </ScrollView>

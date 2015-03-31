@@ -3,6 +3,8 @@ package de.andreaskrienke.android.droidcavation;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,10 +18,14 @@ public class SUnitListActivity extends ActionBarActivity implements SUnitListAct
     private static final String DETAILFRAGMENT_TAG = "DFTAG";
     private boolean mTwoPane;
 
+    private Uri selectedItemUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sunit_list);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (findViewById(R.id.fragment_sunit_detail) != null) {
             // The detail container view will be present only in the large-screen layouts
@@ -72,11 +78,36 @@ public class SUnitListActivity extends ActionBarActivity implements SUnitListAct
             return true;
         }
 
+        if (id == R.id.action_sunit_edit) {
+
+            if (selectedItemUri != null) {
+
+
+                Bundle arguments = new Bundle();
+                arguments.putParcelable(SUnitDetailActivityFragment.DETAIL_URI, selectedItemUri);
+
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                SUnitDetailEditFragment editFragment = new SUnitDetailEditFragment();
+                editFragment.setArguments(arguments);
+
+                fragmentTransaction
+                        .remove(getSupportFragmentManager().findFragmentById(R.id.fragment_sunit_detail))
+                        .add(R.id.fragment_sunit_detail, editFragment)
+                        .commit();
+            }
+
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onItemSelected(Uri contentUri) {
+
+        selectedItemUri = contentUri;
+
         if (mTwoPane) {
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
@@ -95,6 +126,7 @@ public class SUnitListActivity extends ActionBarActivity implements SUnitListAct
             Intent intent = new Intent(this, SUnitDetailActivity.class).setData(contentUri);
             startActivity(intent);
         }
+
     }
 
 }

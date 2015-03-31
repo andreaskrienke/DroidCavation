@@ -218,4 +218,5 @@ public class DroidCavationProvider extends ContentProvider {
             DroidCavationContract.SUnitEntry.TABLE_NAME+
                     "." + DroidCavationContract.SUnitEntry.COLUMN_NUMBER + " = ? ";
 
+
 }
